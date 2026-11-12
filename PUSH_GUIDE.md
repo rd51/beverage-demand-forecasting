@@ -99,3 +99,56 @@ git ls-tree -r origin/main --name-only
 ```
 
 Or just open https://github.com/rd51/beverage-demand-forecasting in a browser.
+
+---
+
+## Running the AI Chatbot after cloning
+
+If you (or anyone else) clones this repo and wants the live chatbot panel in the dashboard, here's the short path. For troubleshooting and model options see [`CHATBOT_GUIDE.md`](CHATBOT_GUIDE.md).
+
+### 1. Install Python deps
+
+```bash
+pip install -r requirements.txt
+```
+
+### 2. Get a free NVIDIA API key
+
+- Go to https://build.nvidia.com/
+- Sign in (Google / GitHub / email — all free)
+- Click any model card → **"Get API Key"** → copy it (starts with `nvapi-`)
+
+### 3. Create `.env` in the project root
+
+Copy `.env.example` to `.env` and paste the key:
+
+```
+NVIDIA_API_KEY=nvapi-your-actual-key-here
+```
+
+`.env` is already in `.gitignore` — it will never be committed.
+
+### 4. Start the server
+
+```bash
+python serve.py
+```
+
+You should see:
+```
+serving ... on http://127.0.0.1:8765  (chatbot: ON)
+```
+
+### 5. Open the dashboard and use the chatbot
+
+Open http://127.0.0.1:8765/dashboard.html in a browser → click the **AI Chatbot** tab (bottom of the left sidebar, 💬 icon). The status dot should be green ("server online"). Type a question or click a suggestion chip.
+
+### What if the server isn't running?
+
+The dashboard still works — all 8 analytical tabs render from the baked-in `results.json` (including the static LLM Interpretation card in tab 02, which was authored by Llama at pipeline-run time). Only the live Chatbot panel needs the server. The sidebar will show a red dot and the panel will say "server offline — run: python serve.py".
+
+### Logs
+
+- Server-side: `chatbot_log.jsonl` (append-only, one JSON per line — timestamp, model, query, answer, latency, tokens)
+- Dashboard view: **Training Logs** tab → **Chatbot** sub-tab (chronological, searchable, downloadable)
+- Browser-side: last 40 messages persisted in `localStorage` so the chat window survives page reloads
