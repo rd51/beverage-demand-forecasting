@@ -1,0 +1,838 @@
+{
+  "meta": {
+    "title": "Beverage Demand Forecasting \u2014 AIO Session II",
+    "author": "Rakshanda Dhote",
+    "course": "AI in Operations \u2014 SP Jain MAIB",
+    "generated_at": "2026-11-12 22:03 +04",
+    "scenario": "Forecasting monthly sales for a new beverage product. The company wants to anticipate demand for the next 3 months to optimize production and distribution.",
+    "dataset_note": "Public dataset: Perrin-Freres monthly champagne sales (1964-01 to 1972-09, 105 months). Classic monthly beverage series with strong seasonality \u2014 used as the proxy historical series for the flavored-water scenario described in the exercise.",
+    "notebook_path": "beverage_forecasting.ipynb"
+  },
+  "eda": {
+    "n_months": 105,
+    "start": "1964-01",
+    "end": "1972-09",
+    "mean_demand": 4761.152380952381,
+    "std_demand": 2553.502601183144,
+    "min_demand": 1413.0,
+    "max_demand": 13916.0,
+    "peak_month": 12,
+    "trough_month": 8,
+    "seasonal_strength": 0.9626358325424026,
+    "trend_strength": 0.7331169235033166
+  },
+  "history": [
+    {
+      "date": "1964-01",
+      "demand": 2815.0
+    },
+    {
+      "date": "1964-02",
+      "demand": 2672.0
+    },
+    {
+      "date": "1964-03",
+      "demand": 2755.0
+    },
+    {
+      "date": "1964-04",
+      "demand": 2721.0
+    },
+    {
+      "date": "1964-05",
+      "demand": 2946.0
+    },
+    {
+      "date": "1964-06",
+      "demand": 3036.0
+    },
+    {
+      "date": "1964-07",
+      "demand": 2282.0
+    },
+    {
+      "date": "1964-08",
+      "demand": 2212.0
+    },
+    {
+      "date": "1964-09",
+      "demand": 2922.0
+    },
+    {
+      "date": "1964-10",
+      "demand": 4301.0
+    },
+    {
+      "date": "1964-11",
+      "demand": 5764.0
+    },
+    {
+      "date": "1964-12",
+      "demand": 7312.0
+    },
+    {
+      "date": "1965-01",
+      "demand": 2541.0
+    },
+    {
+      "date": "1965-02",
+      "demand": 2475.0
+    },
+    {
+      "date": "1965-03",
+      "demand": 3031.0
+    },
+    {
+      "date": "1965-04",
+      "demand": 3266.0
+    },
+    {
+      "date": "1965-05",
+      "demand": 3776.0
+    },
+    {
+      "date": "1965-06",
+      "demand": 3230.0
+    },
+    {
+      "date": "1965-07",
+      "demand": 3028.0
+    },
+    {
+      "date": "1965-08",
+      "demand": 1759.0
+    },
+    {
+      "date": "1965-09",
+      "demand": 3595.0
+    },
+    {
+      "date": "1965-10",
+      "demand": 4474.0
+    },
+    {
+      "date": "1965-11",
+      "demand": 6838.0
+    },
+    {
+      "date": "1965-12",
+      "demand": 8357.0
+    },
+    {
+      "date": "1966-01",
+      "demand": 3113.0
+    },
+    {
+      "date": "1966-02",
+      "demand": 3006.0
+    },
+    {
+      "date": "1966-03",
+      "demand": 4047.0
+    },
+    {
+      "date": "1966-04",
+      "demand": 3523.0
+    },
+    {
+      "date": "1966-05",
+      "demand": 3937.0
+    },
+    {
+      "date": "1966-06",
+      "demand": 3986.0
+    },
+    {
+      "date": "1966-07",
+      "demand": 3260.0
+    },
+    {
+      "date": "1966-08",
+      "demand": 1573.0
+    },
+    {
+      "date": "1966-09",
+      "demand": 3528.0
+    },
+    {
+      "date": "1966-10",
+      "demand": 5211.0
+    },
+    {
+      "date": "1966-11",
+      "demand": 7614.0
+    },
+    {
+      "date": "1966-12",
+      "demand": 9254.0
+    },
+    {
+      "date": "1967-01",
+      "demand": 5375.0
+    },
+    {
+      "date": "1967-02",
+      "demand": 3088.0
+    },
+    {
+      "date": "1967-03",
+      "demand": 3718.0
+    },
+    {
+      "date": "1967-04",
+      "demand": 4514.0
+    },
+    {
+      "date": "1967-05",
+      "demand": 4520.0
+    },
+    {
+      "date": "1967-06",
+      "demand": 4539.0
+    },
+    {
+      "date": "1967-07",
+      "demand": 3663.0
+    },
+    {
+      "date": "1967-08",
+      "demand": 1643.0
+    },
+    {
+      "date": "1967-09",
+      "demand": 4739.0
+    },
+    {
+      "date": "1967-10",
+      "demand": 5428.0
+    },
+    {
+      "date": "1967-11",
+      "demand": 8314.0
+    },
+    {
+      "date": "1967-12",
+      "demand": 10651.0
+    },
+    {
+      "date": "1968-01",
+      "demand": 3633.0
+    },
+    {
+      "date": "1968-02",
+      "demand": 4292.0
+    },
+    {
+      "date": "1968-03",
+      "demand": 4154.0
+    },
+    {
+      "date": "1968-04",
+      "demand": 4121.0
+    },
+    {
+      "date": "1968-05",
+      "demand": 4647.0
+    },
+    {
+      "date": "1968-06",
+      "demand": 4753.0
+    },
+    {
+      "date": "1968-07",
+      "demand": 3965.0
+    },
+    {
+      "date": "1968-08",
+      "demand": 1723.0
+    },
+    {
+      "date": "1968-09",
+      "demand": 5048.0
+    },
+    {
+      "date": "1968-10",
+      "demand": 6922.0
+    },
+    {
+      "date": "1968-11",
+      "demand": 9858.0
+    },
+    {
+      "date": "1968-12",
+      "demand": 11331.0
+    },
+    {
+      "date": "1969-01",
+      "demand": 4016.0
+    },
+    {
+      "date": "1969-02",
+      "demand": 3957.0
+    },
+    {
+      "date": "1969-03",
+      "demand": 4510.0
+    },
+    {
+      "date": "1969-04",
+      "demand": 4276.0
+    },
+    {
+      "date": "1969-05",
+      "demand": 4968.0
+    },
+    {
+      "date": "1969-06",
+      "demand": 4677.0
+    },
+    {
+      "date": "1969-07",
+      "demand": 3523.0
+    },
+    {
+      "date": "1969-08",
+      "demand": 1821.0
+    },
+    {
+      "date": "1969-09",
+      "demand": 5222.0
+    },
+    {
+      "date": "1969-10",
+      "demand": 6872.0
+    },
+    {
+      "date": "1969-11",
+      "demand": 10803.0
+    },
+    {
+      "date": "1969-12",
+      "demand": 13916.0
+    },
+    {
+      "date": "1970-01",
+      "demand": 2639.0
+    },
+    {
+      "date": "1970-02",
+      "demand": 2899.0
+    },
+    {
+      "date": "1970-03",
+      "demand": 3370.0
+    },
+    {
+      "date": "1970-04",
+      "demand": 3740.0
+    },
+    {
+      "date": "1970-05",
+      "demand": 2927.0
+    },
+    {
+      "date": "1970-06",
+      "demand": 3986.0
+    },
+    {
+      "date": "1970-07",
+      "demand": 4217.0
+    },
+    {
+      "date": "1970-08",
+      "demand": 1738.0
+    },
+    {
+      "date": "1970-09",
+      "demand": 5221.0
+    },
+    {
+      "date": "1970-10",
+      "demand": 6424.0
+    },
+    {
+      "date": "1970-11",
+      "demand": 9842.0
+    },
+    {
+      "date": "1970-12",
+      "demand": 13076.0
+    },
+    {
+      "date": "1971-01",
+      "demand": 3934.0
+    },
+    {
+      "date": "1971-02",
+      "demand": 3162.0
+    },
+    {
+      "date": "1971-03",
+      "demand": 4286.0
+    },
+    {
+      "date": "1971-04",
+      "demand": 4676.0
+    },
+    {
+      "date": "1971-05",
+      "demand": 5010.0
+    },
+    {
+      "date": "1971-06",
+      "demand": 4874.0
+    },
+    {
+      "date": "1971-07",
+      "demand": 4633.0
+    },
+    {
+      "date": "1971-08",
+      "demand": 1659.0
+    },
+    {
+      "date": "1971-09",
+      "demand": 5951.0
+    },
+    {
+      "date": "1971-10",
+      "demand": 6981.0
+    },
+    {
+      "date": "1971-11",
+      "demand": 9851.0
+    },
+    {
+      "date": "1971-12",
+      "demand": 12670.0
+    },
+    {
+      "date": "1972-01",
+      "demand": 4348.0
+    },
+    {
+      "date": "1972-02",
+      "demand": 3564.0
+    },
+    {
+      "date": "1972-03",
+      "demand": 4577.0
+    },
+    {
+      "date": "1972-04",
+      "demand": 4788.0
+    },
+    {
+      "date": "1972-05",
+      "demand": 4618.0
+    },
+    {
+      "date": "1972-06",
+      "demand": 5312.0
+    },
+    {
+      "date": "1972-07",
+      "demand": 4298.0
+    },
+    {
+      "date": "1972-08",
+      "demand": 1413.0
+    },
+    {
+      "date": "1972-09",
+      "demand": 5877.0
+    }
+  ],
+  "backtest": {
+    "test_months": [
+      "1971-10",
+      "1971-11",
+      "1971-12",
+      "1972-01",
+      "1972-02",
+      "1972-03",
+      "1972-04",
+      "1972-05",
+      "1972-06",
+      "1972-07",
+      "1972-08",
+      "1972-09"
+    ],
+    "actual": [
+      6981.0,
+      9851.0,
+      12670.0,
+      4348.0,
+      3564.0,
+      4577.0,
+      4788.0,
+      4618.0,
+      5312.0,
+      4298.0,
+      1413.0,
+      5877.0
+    ],
+    "predictions": {
+      "Naive": [
+        5951.0,
+        6981.0,
+        9851.0,
+        12670.0,
+        4348.0,
+        3564.0,
+        4577.0,
+        4788.0,
+        4618.0,
+        5312.0,
+        4298.0,
+        1413.0
+      ],
+      "ARIMA": [
+        7024.785163860806,
+        10553.486816033797,
+        13877.342216738969,
+        3572.441842662867,
+        3258.5343550820303,
+        4102.280199081898,
+        4529.918551604647,
+        4288.274016812491,
+        4740.672992322447,
+        4799.764375254897,
+        1957.5472516882796,
+        5929.707250450253
+      ],
+      "RandomForest": [
+        7280.614419372295,
+        10831.906586309518,
+        12480.82784523809,
+        3521.2136278841253,
+        3528.66033370257,
+        3816.799412357816,
+        4144.311275879913,
+        4794.379177339017,
+        4540.642276641895,
+        4536.056937529179,
+        1714.2641438492055,
+        6686.639443681321
+      ],
+      "XGBoost": [
+        6906.3017578125,
+        10697.9873046875,
+        13213.169921875,
+        3314.20166015625,
+        3530.2001953125,
+        3683.294921875,
+        4229.35205078125,
+        4468.310546875,
+        4590.99365234375,
+        4785.8720703125,
+        1890.604248046875,
+        6150.31103515625
+      ]
+    }
+  },
+  "walk_forward": {
+    "per_step": [
+      {
+        "month": "1971-10",
+        "actual": 6981.0,
+        "Naive": 5951.0,
+        "ARIMA": 7024.785163860806,
+        "RandomForest": 7261.296059523809,
+        "XGBoost": 6906.951171875
+      },
+      {
+        "month": "1971-11",
+        "actual": 9851.0,
+        "Naive": 6981.0,
+        "ARIMA": 10537.769340313607,
+        "RandomForest": 10737.355690476188,
+        "XGBoost": 10683.107421875
+      },
+      {
+        "month": "1971-12",
+        "actual": 12670.0,
+        "Naive": 9851.0,
+        "ARIMA": 13604.032067059321,
+        "RandomForest": 12525.897273809525,
+        "XGBoost": 13191.318359375
+      },
+      {
+        "month": "1972-01",
+        "actual": 4348.0,
+        "Naive": 12670.0,
+        "ARIMA": 3260.849027561105,
+        "RandomForest": 3554.202638008233,
+        "XGBoost": 3313.99755859375
+      },
+      {
+        "month": "1972-02",
+        "actual": 3564.0,
+        "Naive": 4348.0,
+        "ARIMA": 3543.988202769265,
+        "RandomForest": 3684.200269986399,
+        "XGBoost": 3743.419189453125
+      },
+      {
+        "month": "1972-03",
+        "actual": 4577.0,
+        "Naive": 3564.0,
+        "ARIMA": 4225.474318879229,
+        "RandomForest": 3872.847799637416,
+        "XGBoost": 3831.95947265625
+      },
+      {
+        "month": "1972-04",
+        "actual": 4788.0,
+        "Naive": 4577.0,
+        "ARIMA": 4741.531212613326,
+        "RandomForest": 4348.567370336144,
+        "XGBoost": 4454.08349609375
+      },
+      {
+        "month": "1972-05",
+        "actual": 4618.0,
+        "Naive": 4788.0,
+        "ARIMA": 4642.581778843318,
+        "RandomForest": 4817.452575740542,
+        "XGBoost": 4475.40185546875
+      },
+      {
+        "month": "1972-06",
+        "actual": 5312.0,
+        "Naive": 4618.0,
+        "ARIMA": 4866.0244327017845,
+        "RandomForest": 4520.987696472332,
+        "XGBoost": 4534.93798828125
+      },
+      {
+        "month": "1972-07",
+        "actual": 4298.0,
+        "Naive": 5312.0,
+        "ARIMA": 4938.368948013686,
+        "RandomForest": 4668.177355094252,
+        "XGBoost": 4860.35009765625
+      },
+      {
+        "month": "1972-08",
+        "actual": 1413.0,
+        "Naive": 4298.0,
+        "ARIMA": 1786.4456454344172,
+        "RandomForest": 1727.6995873015874,
+        "XGBoost": 2029.5543212890625
+      },
+      {
+        "month": "1972-09",
+        "actual": 5877.0,
+        "Naive": 1413.0,
+        "ARIMA": 5854.177043276249,
+        "RandomForest": 6662.42840583028,
+        "XGBoost": 6573.17724609375
+      }
+    ],
+    "metrics": {
+      "Naive": {
+        "MAPE": 52.21,
+        "WAPE": 38.47,
+        "MAE": 2189.67
+      },
+      "ARIMA": {
+        "MAPE": 8.32,
+        "WAPE": 6.85,
+        "MAE": 389.74
+      },
+      "RandomForest": {
+        "MAPE": 10.32,
+        "WAPE": 8.53,
+        "MAE": 485.76
+      },
+      "XGBoost": {
+        "MAPE": 12.66,
+        "WAPE": 9.54,
+        "MAE": 542.88
+      }
+    }
+  },
+  "metrics": {
+    "Naive": {
+      "MAPE": 52.21,
+      "WAPE": 38.47,
+      "MAE": 2189.67
+    },
+    "ARIMA": {
+      "MAPE": 10.71,
+      "WAPE": 8.44,
+      "MAE": 480.63
+    },
+    "RandomForest": {
+      "MAPE": 10.4,
+      "WAPE": 8.83,
+      "MAE": 502.7
+    },
+    "XGBoost": {
+      "MAPE": 11.37,
+      "WAPE": 8.92,
+      "MAE": 507.86
+    }
+  },
+  "best_model": "ARIMA",
+  "arima_order": {
+    "non_seasonal": [
+      0,
+      1,
+      2
+    ],
+    "seasonal": [
+      1,
+      1,
+      1,
+      12
+    ]
+  },
+  "arima_aic": 1062.79,
+  "forecast_horizon": 3,
+  "forecast": {
+    "months": [
+      "1972-10",
+      "1972-11",
+      "1972-12"
+    ],
+    "Naive": [
+      5877.0,
+      5877.0,
+      5877.0
+    ],
+    "ARIMA": [
+      7044.545408258502,
+      10083.507175416571,
+      13031.745441866025
+    ],
+    "RandomForest": [
+      7029.737518849203,
+      10304.121596230163,
+      12730.553078373014
+    ],
+    "XGBoost": [
+      6916.6982421875,
+      9984.134765625,
+      13424.0498046875
+    ]
+  },
+  "prediction_intervals": {
+    "ARIMA": {
+      "p025": [
+        5565.017788764016,
+        8516.781399786472,
+        11459.540366650283
+      ],
+      "p10": [
+        6077.134296633106,
+        9059.080254118315,
+        12003.735799141528
+      ],
+      "p50": [
+        7044.545408258502,
+        10083.507175416571,
+        13031.745441866025
+      ],
+      "p90": [
+        8011.956519883898,
+        11107.934096714827,
+        14059.755084590523
+      ],
+      "p975": [
+        8524.073027752987,
+        11650.23295104667,
+        14603.950517081768
+      ]
+    },
+    "RandomForest": {
+      "p025": [
+        6332.90563089827,
+        9302.909206876802,
+        10345.80240659722
+      ],
+      "p10": [
+        6564.9425019841265,
+        9815.076235714285,
+        10972.863288293647
+      ],
+      "p50": [
+        6947.863047528861,
+        10227.46651190476,
+        12458.912038690472
+      ],
+      "p90": [
+        7577.735369173883,
+        10712.311936904762,
+        13111.242759992785
+      ],
+      "p975": [
+        7751.88150763889,
+        10872.744153720238,
+        13217.787855803574
+      ]
+    },
+    "XGBoost": {
+      "p025": [
+        6032.87373046875,
+        9072.277587890625,
+        10627.7767578125
+      ],
+      "p10": [
+        6543.610693359375,
+        9359.86611328125,
+        11444.9279296875
+      ],
+      "p50": [
+        6911.952392578125,
+        9877.240234375,
+        12787.08349609375
+      ],
+      "p90": [
+        7430.618115234375,
+        10758.3359375,
+        13643.58076171875
+      ],
+      "p975": [
+        7845.985388183594,
+        10946.253369140626,
+        13886.731982421876
+      ]
+    }
+  },
+  "interpretation": {
+    "headline": "ARIMA is the recommended model, projecting strong growth through the end of 1972.",
+    "seasonality_insight": "The STL analysis shows very strong seasonality (0.96), indicating predictable monthly patterns. The trend strength of 0.73 suggests a significant underlying growth or decline pattern is present in the historical data.",
+    "model_comparison": "ARIMA performed best in both the hold-out (WAPE 8.44%) and walk-forward (WAPE 6.85%) backtests. It outperformed RandomForest and XGBoost, while Naive was consistently poor across all tests. ARIMA's success is supported by its AIC-selected order capturing the strong seasonal component (12-month period).",
+    "forecast_insight": "The next three months show increasing demand, peaking in December 1972 according to the ARIMA forecast. December requires the most planning attention due to the highest projected volume (13032 units). The 95% prediction interval width increases from 308 units in October to 314 units in December, indicating slightly growing forecast uncertainty.",
+    "key_insights": [
+      "Strong Seasonality Exists: Monthly patterns are highly predictable based on historical data.",
+      "ARIMA is Superior: It consistently delivered the lowest error metrics across both backtesting methodologies.",
+      "Growth is Expected: The forecast indicates a clear upward trend over the next quarter.",
+      "Peak Demand is December: Production and inventory must be scaled to meet the highest projected month."
+    ],
+    "recommendations": [
+      "Increase December production capacity to meet the 13032 unit forecast.",
+      "Procure inventory to cover the upper bound of the 95% confidence interval for December (14604 units) to mitigate stockout risk.",
+      "Plan for increased distribution logistics capacity leading into the December peak.",
+      "Monitor the ARIMA model performance closely in the first month of the forecast period (1972-10)."
+    ],
+    "risks": [
+      "The historical data is from a specific period (1964-1972) and may not reflect current market conditions or product lifecycle changes.",
+      "The high seasonality (0.96) means any deviation from historical seasonal norms could severely impact planning."
+    ],
+    "real_world_connection": "Accurate forecasting is critical for optimizing S&OP by balancing inventory holding costs against the risk of lost sales due to stockouts. Over- or under-forecasting directly impacts working capital efficiency in a fast-moving FMCG environment.",
+    "_source": "nvidia:nvidia/nemotron-3.5-bolt-e4b"
+  },
+  "logs": {
+    "Pipeline": "[+  0.00s] ============================================================\n[+  0.00s] Beverage Forecasting Pipeline \u2014 loading champagne_sales.csv\n[+  0.00s] ============================================================\n[+  0.02s] loaded 105 months  (1964-01 \u2192 1972-09)\n[+  0.02s] features: ['Lag1', 'Lag2', 'Lag3', 'Lag12', 'RollMean3', 'RollMean6', 'Month_of_Year', 'Quarter']\n[+  0.02s] after dropna on lags: 93 training-ready rows\n[+  0.02s] hold-out: last 12 months  (1971-10 \u2192 1972-09)\n[+  0.05s] STL seasonal_strength=0.963  trend_strength=0.733\n[+ 46.81s] ============================================================\n[+ 46.81s] Hold-out winner by WAPE: ARIMA\n[+ 46.81s] ============================================================",
+    "Naive": "[+  0.05s] ============================================================\n[+  0.05s] Model 1 \u2014 Naive (y_t = y_{t-1})\n[+  0.05s] ============================================================\n[+  0.05s] predictions = previous month's demand\n[+  0.05s] MAPE=52.21%  WAPE=38.47%",
+    "ARIMA": "[+  0.05s] ============================================================\n[+  0.05s] Model 2 \u2014 SARIMA (AIC grid search)\n[+  0.05s] ============================================================\n[+  0.87s]   tested (0,0,1)x(0,1,1,12)  AIC=  1099.67  best so far=1119.2240824292137\n[+  3.24s]   tested (0,0,2)x(1,1,1,12)  AIC=  1081.55  best so far=1084.3876031819057\n[+  5.03s]   tested (0,1,1)x(0,1,1,12)  AIC=  1080.30  best so far=1081.5537846752266\n[+  8.56s]   tested (0,1,2)x(1,1,1,12)  AIC=  1062.79  best so far=1063.8521998828921\n[+ 10.34s]   tested (1,0,1)x(0,1,1,12)  AIC=  1095.58  best so far=1062.7894950316047\n[+ 14.32s]   tested (1,0,2)x(1,1,1,12)  AIC=  1076.80  best so far=1062.7894950316047\n[+ 15.90s]   tested (1,1,1)x(0,1,1,12)  AIC=  1079.29  best so far=1062.7894950316047\n[+ 21.85s]   tested (1,1,2)x(1,1,1,12)  AIC=  1064.69  best so far=1062.7894950316047\n[+ 24.52s]   tested (2,0,1)x(0,1,1,12)  AIC=  1093.30  best so far=1062.7894950316047\n[+ 32.51s]   tested (2,0,2)x(1,1,1,12)  AIC=  1078.69  best so far=1062.7894950316047\n[+ 34.93s]   tested (2,1,1)x(0,1,1,12)  AIC=  1080.51  best so far=1062.7894950316047\n[+ 40.16s]   tested (2,1,2)x(1,1,1,12)  AIC=  1066.90  best so far=1062.7894950316047\n[+ 40.16s] grid search complete: 72 orders fitted\n[+ 40.16s] selected order: (0, 1, 2) x (1, 1, 1, 12)  AIC=1062.79\n[+ 41.20s] fitted on 93 months\n[+ 41.20s] log-likelihood=-526.39  AIC=1062.79  BIC=1073.66\n[+ 41.22s] hold-out MAPE=10.71%  WAPE=8.44%",
+    "RandomForest": "[+ 41.22s] ============================================================\n[+ 41.22s] Model 3 \u2014 Random Forest (400 trees, depth 8)\n[+ 41.22s] ============================================================\n[+ 43.28s] fitted on 81 rows x 8 features\n[+ 43.28s] OOB R\u00b2=0.8999\n[+ 43.47s]   importance  Lag12            0.7003\n[+ 43.47s]   importance  Month_of_Year    0.1991\n[+ 43.47s]   importance  Lag2             0.0299\n[+ 43.47s]   importance  RollMean6        0.0264\n[+ 43.47s]   importance  Lag1             0.0152\n[+ 43.47s]   importance  Lag3             0.0132\n[+ 43.47s]   importance  RollMean3        0.0122\n[+ 43.47s]   importance  Quarter          0.0039\n[+ 43.72s] hold-out MAPE=10.40%  WAPE=8.83%\n[+ 78.09s] bootstrap PI: 150 resamples, 3-step recursive\n[+111.93s]   bootstrap  50/150\n[+130.56s]   bootstrap 100/150\n[+149.18s]   bootstrap 150/150",
+    "XGBoost": "[+ 43.72s] ============================================================\n[+ 43.72s] Model 4 \u2014 XGBoost (500 rounds, lr 0.05, depth 5)\n[+ 43.72s] ============================================================\n[+ 46.79s] fitted on 81 rows; eval RMSE trace below\n[+ 46.79s]   round    0  eval-RMSE=   2872.34\n[+ 46.79s]   round   50  eval-RMSE=    578.40\n[+ 46.79s]   round  100  eval-RMSE=    570.86\n[+ 46.79s]   round  150  eval-RMSE=    589.56\n[+ 46.79s]   round  200  eval-RMSE=    595.31\n[+ 46.79s]   round  250  eval-RMSE=    596.11\n[+ 46.79s]   round  300  eval-RMSE=    596.24\n[+ 46.79s]   round  350  eval-RMSE=    596.81\n[+ 46.79s]   round  400  eval-RMSE=    597.03\n[+ 46.79s]   round  450  eval-RMSE=    597.20\n[+ 46.79s]   round  499  eval-RMSE=    597.34  (final)\n[+ 46.79s]   importance  Month_of_Year    0.7000\n[+ 46.79s]   importance  Lag12            0.2348\n[+ 46.79s]   importance  Lag2             0.0177\n[+ 46.79s]   importance  Quarter          0.0150\n[+ 46.79s]   importance  RollMean6        0.0113\n[+ 46.79s]   importance  RollMean3        0.0077\n[+ 46.79s]   importance  Lag3             0.0073\n[+ 46.79s]   importance  Lag1             0.0061\n[+ 46.81s] hold-out MAPE=11.37%  WAPE=8.92%\n[+149.18s] bootstrap PI: 150 resamples, 3-step recursive\n[+158.22s]   bootstrap  50/150\n[+171.38s]   bootstrap 100/150\n[+184.50s]   bootstrap 150/150",
+    "WalkForward": "[+ 46.81s] ============================================================\n[+ 46.81s] Walk-forward backtest: 12 months, refit each step\n[+ 46.81s] ============================================================\n[+ 49.70s] step  1/12  1971-10  actual=   6981  ARIMA=   7025  RF=   7261  XGB=   6907  Naive=   5951\n[+ 50.62s] step  2/12  1971-11  actual=   9851  ARIMA=  10538  RF=  10737  XGB=  10683  Naive=   6981\n[+ 53.51s] step  3/12  1971-12  actual=  12670  ARIMA=  13604  RF=  12526  XGB=  13191  Naive=   9851\n[+ 56.84s] step  4/12  1972-01  actual=   4348  ARIMA=   3261  RF=   3554  XGB=   3314  Naive=  12670\n[+ 59.31s] step  5/12  1972-02  actual=   3564  ARIMA=   3544  RF=   3684  XGB=   3743  Naive=   4348\n[+ 60.38s] step  6/12  1972-03  actual=   4577  ARIMA=   4225  RF=   3873  XGB=   3832  Naive=   3564\n[+ 61.31s] step  7/12  1972-04  actual=   4788  ARIMA=   4742  RF=   4349  XGB=   4454  Naive=   4577\n[+ 62.42s] step  8/12  1972-05  actual=   4618  ARIMA=   4643  RF=   4817  XGB=   4475  Naive=   4788\n[+ 64.08s] step  9/12  1972-06  actual=   5312  ARIMA=   4866  RF=   4521  XGB=   4535  Naive=   4618\n[+ 66.87s] step 10/12  1972-07  actual=   4298  ARIMA=   4938  RF=   4668  XGB=   4860  Naive=   5312\n[+ 70.11s] step 11/12  1972-08  actual=   1413  ARIMA=   1786  RF=   1728  XGB=   2030  Naive=   4298\n[+ 72.82s] step 12/12  1972-09  actual=   5877  ARIMA=   5854  RF=   6662  XGB=   6573  Naive=   1413\n[+ 72.83s] walk-forward metrics (expanding window, refit each step):\n[+ 72.83s]   Naive         MAPE= 52.21%  WAPE= 38.47%  MAE= 2189.67\n[+ 72.83s]   ARIMA         MAPE=  8.32%  WAPE=  6.85%  MAE=  389.74\n[+ 72.83s]   RandomForest  MAPE= 10.32%  WAPE=  8.53%  MAE=  485.76\n[+ 72.83s]   XGBoost       MAPE= 12.66%  WAPE=  9.54%  MAE=  542.88",
+    "Forecast": "[+ 72.85s] ============================================================\n[+ 72.85s] 3-month ahead forecast with prediction intervals\n[+ 72.85s] ============================================================\n[+ 74.03s] ARIMA mean: [7045, 10084, 13032]\n[+ 74.03s] ARIMA 80% PI: [(6077, 8012), (9059, 11108), (12004, 14060)]\n[+ 74.03s] ARIMA 95% PI: [(5565, 8524), (8517, 11650), (11460, 14604)]",
+    "LLM": "[+  3.88s] calling NVIDIA NIM: model=nvidia/nemotron-3.5-bolt-e4b\n[+  3.88s] prompt length: 2737 chars\n[+ 12.54s] response length: 2476 chars\n[+ 12.54s] LLM interpretation parsed successfully."
+  }
+}

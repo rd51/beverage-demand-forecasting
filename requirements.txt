@@ -1,0 +1,11 @@
+pandas>=2.2
+numpy>=1.26
+scikit-learn>=1.5
+statsmodels>=0.14
+xgboost>=2.0
+matplotlib>=3.8
+openai>=1.40
+python-dotenv>=1.0
+jupyter>=1.0
+nbformat>=5.10
+nbconvert>=7.16
